@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  
+
+    <title>Github User Search</title>
+
+    <!-- Bootstrap core CSS -->
+    
+    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+    
+    
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="#"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Github User Search</h1>
+        <div class="searchcontainer">
+        <input type="text" id="searchUSER" class="form-control" placeholder="Github Username..">
+        <button type="button" id="button1"  class="btn btn-success">Search</button>
+        </div>
+        <br>
+        
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script> src="https://code.jquery.com/jquery-3.3.1.min.js"</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
+   
+   
+   
+   
+    
+   <script>
+
+   $(document).ready(function(){
+    $('#button1').on('click',function(){
+      
+      
+      var username = document.getElementById('searchUSER').value;
+        
+        
+     
+     
+     
+     <!--Request -->
+
+$.ajax({
+
+url:'https://api.github.com/users/'+username,
+data:     {
+            client_id:'2cc3be4fcb0294dd41d5',
+            client_secret:'e5d278a9dbb759b01543d5f0f2970fdbb9a00a8c'
+          },
+ error:function(){<!--User Not Found -->
+  open("http://localhost:3000/search/negative");
+ }         
+          
+      }
+        ).done(function(user) {
+         
+            
+                if(username==user.login){<!--User Found -->
+                  open("http://localhost:3000/search/positive");
+                    }
+          
+          });
+        });
+     
+  });
+  
+   </script>
+          
+       
+  
+    
+  
+   
+   
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
